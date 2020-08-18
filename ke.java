@@ -9,13 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-public class ke extends JFrame implements ActionListener {
+public class ke extends JFrame{
 
     private final JFrame frame;
     private JTextField textField;
     private JButton send;
     private JButton enter;
     private JLabel appear, friend;
+    private int count = 0;
     
     public static void main(String[] args) {
         ke gui = new ke();
@@ -42,12 +43,12 @@ public class ke extends JFrame implements ActionListener {
         send = new JButton("send");
         frame.getContentPane().add(send);
         //Push the send.
-        send.addActionListener(this);
+        send.addActionListener(new ButtonAction("send"));
 
         enter = new JButton("enter");
         frame.getContentPane().add(enter);
         //Push the enter.
-        enter.addActionListener(this);
+        enter.addActionListener(new ButtonAction("enter"));
 
         appear = new JLabel("Your output will appear here...");
         appear.setOpaque(true);
@@ -81,8 +82,25 @@ public class ke extends JFrame implements ActionListener {
         friend.setBounds(1100, 10 + height/2, 400, 700);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
+
+    // create Listener class and perform
+    private class ButtonAction implements ActionListener {
+        private String content;
+
+        public ButtonAction(String s) {
+            content = s;
+        }
+        public void actionPerformed(ActionEvent event) {
+            switch (content) {
+                case "send":
+                    System.out.println(count);
+                    break;
+                case "enter":
+                    count++;
+                    System.out.println(count);
+                    break;
+            }
+        }
         
     }
 }
