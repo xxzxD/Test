@@ -17,6 +17,7 @@ public class ke extends JFrame{
     private JButton enter;
     private JLabel appear, friend;
     private int count = 0;
+    private String comment = "";
     
     public static void main(String[] args) {
         ke gui = new ke();
@@ -43,12 +44,12 @@ public class ke extends JFrame{
         send = new JButton("send");
         frame.getContentPane().add(send);
         //Push the send.
-        send.addActionListener(new ButtonAction("send"));
+        send.addActionListener(new SentenceListener());
 
         enter = new JButton("enter");
         frame.getContentPane().add(enter);
         //Push the enter.
-        enter.addActionListener(new ButtonAction("enter"));
+        enter.addActionListener(new SentenceListener());
 
         appear = new JLabel("Your output will appear here...");
         appear.setOpaque(true);
@@ -84,23 +85,12 @@ public class ke extends JFrame{
 
 
     // create Listener class and perform
-    private class ButtonAction implements ActionListener {
-        private String content;
-
-        public ButtonAction(String s) {
-            content = s;
-        }
+    private class SentenceListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-            switch (content) {
-                case "send":
-                    System.out.println(count);
-                    break;
-                case "enter":
-                    count++;
-                    System.out.println(count);
-                    break;
+                comment = textField.getText() + "\n" + comment;
+                appear.setText(comment);
+                System.out.println(comment);
             }
         }
         
-    }
 }
