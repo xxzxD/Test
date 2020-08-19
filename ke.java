@@ -1,7 +1,11 @@
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import java.awt.Dimension;
 import java.awt.Color;
@@ -16,6 +20,9 @@ public class ke extends JFrame{
     private JButton send;
     private JButton enter;
     private JLabel appear, friend;
+    private JPanel panelOutput;
+    private JTextArea textArea;
+    private JScrollPane jsp;
     private int count = 0;
     private String comment = "";
     
@@ -41,6 +48,7 @@ public class ke extends JFrame{
         textField = new JTextField();
         frame.getContentPane().add(textField);
 
+
         send = new JButton("send");
         frame.getContentPane().add(send);
         //Push the send.
@@ -51,12 +59,23 @@ public class ke extends JFrame{
         //Push the enter.
         enter.addActionListener(new SentenceListener());
 
-        appear = new JLabel("Your output will appear here...");
-        appear.setOpaque(true);
-        appear.setBackground(Color.WHITE);
-        //Words are displayed from the top.
-        appear.setVerticalAlignment(SwingConstants.TOP);
-        frame.getContentPane().add(appear);
+        textArea = new JTextArea("Output...");
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        
+        jsp = new JScrollPane(textArea);
+
+        panelOutput = new JPanel();
+        panelOutput.setLayout(null);
+        panelOutput.add(jsp);
+        frame.getContentPane().add(panelOutput);
+
+        // appear = new JLabel("Your output will appear here...");
+        // appear.setOpaque(true);
+        // appear.setBackground(Color.WHITE);
+        // //Words are displayed from the top.
+        // appear.setVerticalAlignment(SwingConstants.TOP);
+        // frame.getContentPane().add(appear);
 
         friend = new JLabel("Your Friend");
         friend.setOpaque(true);
@@ -79,7 +98,9 @@ public class ke extends JFrame{
         textField.setBounds(100, 675 + height/2, 300, 40);
         send.setBounds(425, 675 + height/2, 100, 40);
         enter.setBounds(700, 675 + height/2, 200, 40);
-        appear.setBounds(10, 10 + height/2, 1000, 600);
+        panelOutput.setBounds(10, 10 + height/2, 1000, 600);
+        jsp.setBounds(0, 0, 1000, 600);
+        // appear.setBounds(10, 10 + height/2, 1000, 600);
         friend.setBounds(1100, 10 + height/2, 400, 700);
     }
 
@@ -87,7 +108,7 @@ public class ke extends JFrame{
     // create Listener class and perform
     private class SentenceListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-                comment = textField.getText() + "\n" + comment;
+                comment = textField.getText() + comment;
                 appear.setText(comment);
                 System.out.println(comment);
             }
