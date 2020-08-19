@@ -7,12 +7,14 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+
 import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.Calendar;
 public class ke extends JFrame{
 
     private final JFrame frame;
@@ -44,24 +46,26 @@ public class ke extends JFrame{
     }
 
     private void label() {
+        SentenceListener sentenceListener = new SentenceListener();
 
         textField = new JTextField();
+        textField.addActionListener(sentenceListener);
         frame.getContentPane().add(textField);
-
 
         send = new JButton("send");
         frame.getContentPane().add(send);
         //Push the send.
-        send.addActionListener(new SentenceListener());
+        send.addActionListener(sentenceListener);
 
         enter = new JButton("enter");
         frame.getContentPane().add(enter);
         //Push the enter.
-        enter.addActionListener(new SentenceListener());
+        enter.addActionListener(sentenceListener);
 
-        textArea = new JTextArea("Output...");
+        // 
+        textArea = new JTextArea("Your output will appear here...");
         textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
+        // textArea.setWrapStyleWord(true);
         
         jsp = new JScrollPane(textArea);
 
@@ -104,13 +108,32 @@ public class ke extends JFrame{
         friend.setBounds(1100, 10 + height/2, 400, 700);
     }
 
+    // formatting comment
+    private String CommentFormat(String s){
+        // get time(local)
+        Calendar ca = Calendar.getInstance();
+        int hour = ca.get(Calendar.HOUR_OF_DAY);
+        int minute = ca.get(Calendar.MINUTE);
+
+        String cf = "";
+        cf = hour + ":" + minute + "  User  " + s + "\n";
+        return cf;
+    }
+
 
     // create Listener class and perform
     private class SentenceListener implements ActionListener {
+        private int first = 1;
         public void actionPerformed(ActionEvent event) {
-                comment = textField.getText() + comment;
-                appear.setText(comment);
-                System.out.println(comment);
+
+                comment = CommentFormat(textField.getText());
+
+                if(first == 0){
+                    textArea.append(comment);
+                }else{
+                    textArea.setText(comment);
+                    first = 0;
+                }
             }
         }
         
