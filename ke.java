@@ -51,7 +51,7 @@ public class ke extends JFrame{
         frame.setBounds(300, 10, 1000, 800);
         frame.getContentPane().setLayout(null);
         label();
-        TimesInPeriod();
+        TimesInPeriod();// Use to print the times of "ENTER" key pressed
     }
 
     private void label() {
@@ -71,11 +71,12 @@ public class ke extends JFrame{
         //Push the enter.
         enter.addActionListener(sentenceListener);
 
-        // 
+        // rewrite use textarea
         textArea = new JTextArea("Your output will appear here.\nIf you want to cheer, press ENTER in this area as many times as you can.");
         textArea.setLineWrap(true);
-        textArea.setEditable(false);
+        textArea.setEditable(false); // not editable
         textArea.addKeyListener(new KeyAdapter() {
+            // listen when ENTER is pressed
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     count++;
@@ -84,7 +85,7 @@ public class ke extends JFrame{
         });
         // textArea.setWrapStyleWord(true);
         
-        jsp = new JScrollPane(textArea);
+        jsp = new JScrollPane(textArea); // Add scroll to textarea
 
         panelOutput = new JPanel();
         panelOutput.setLayout(null);
@@ -98,7 +99,7 @@ public class ke extends JFrame{
         // appear.setVerticalAlignment(SwingConstants.TOP);
         // frame.getContentPane().add(appear);
 
-
+        // not achieved, try to use color and font
         // cheerItalic = new JLabel("cheered");
         // Font f = new Font("Defalut", Font.ITALIC, 12);
         // cheerItalic.setFont(f);
@@ -126,7 +127,7 @@ public class ke extends JFrame{
         send.setBounds(425, 675 + height/2, 100, 40);
         enter.setBounds(700, 675 + height/2, 200, 40);
         panelOutput.setBounds(10, 10 + height/2, 1000, 600);
-        jsp.setBounds(0, 0, 1000, 600);
+        jsp.setBounds(0, 0, 1000, 600); // size and location of textarea and scroll
         // appear.setBounds(10, 10 + height/2, 1000, 600);
         friend.setBounds(1100, 10 + height/2, 400, 700);
     }
@@ -143,6 +144,7 @@ public class ke extends JFrame{
         return cf;
     }
 
+    // Use to print the times of "ENTER" key pressed
     private void TimesInPeriod(){
         Timer timer = new Timer();
         
@@ -177,7 +179,7 @@ public class ke extends JFrame{
     }
 
 
-    // create Textfield danmu Listener and perform
+    // create Textfield danmu Listener and send danmu
     private class SentenceListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
 
