@@ -182,9 +182,16 @@ public class ke extends JFrame{
     // create Textfield danmu Listener and send danmu
     private class SentenceListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-
+            int empty = 0;
+            if(textField.getText().length() == 0){
+                empty = 1;
+            }
+            else{
                 comment = CommentFormat(textField.getText(), "User");
+            }
 
+            if(empty == 1){}
+            else{
                 if(first == 0){
                     textArea.append(comment);
                 }else{
@@ -192,6 +199,9 @@ public class ke extends JFrame{
                     first = 0;
                 }
             }
+            empty = 0;
+            textField.setText("");
+        }
     }
         
 }
