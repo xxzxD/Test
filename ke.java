@@ -10,6 +10,7 @@ import javax.swing.SwingConstants;
 
 import java.awt.Dimension;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -27,7 +28,7 @@ public class ke extends JFrame{
     private JTextField textField;
     private JButton send;
     private JButton enter;
-    private JLabel appear, friend;
+    private JLabel appear, friend, cheerItalic;
     private JPanel panelOutput;
     private JTextArea textArea;
     private JScrollPane jsp;
@@ -80,16 +81,6 @@ public class ke extends JFrame{
                     count++;
                 }
             }
-            
-            // public void keyReleased(KeyEvent e){
-            //     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            //         System.out.println("ENTER");
-            //     }};
-            // public void keyPressed(KeyEvent e){
-            //     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            //         System.out.println("ENTER");
-            //     }};
-
         });
         // textArea.setWrapStyleWord(true);
         
@@ -106,6 +97,12 @@ public class ke extends JFrame{
         // //Words are displayed from the top.
         // appear.setVerticalAlignment(SwingConstants.TOP);
         // frame.getContentPane().add(appear);
+
+
+        // cheerItalic = new JLabel("cheered");
+        // Font f = new Font("Defalut", Font.ITALIC, 12);
+        // cheerItalic.setFont(f);
+        // cheerItalic.setForeground(Color.RED);
 
         friend = new JLabel("Your Friend");
         friend.setOpaque(true);
@@ -148,7 +145,6 @@ public class ke extends JFrame{
 
     private void TimesInPeriod(){
         Timer timer = new Timer();
-        String status = "";
         
         timer.schedule(new TimerTask() {
             public void run() {
@@ -181,7 +177,7 @@ public class ke extends JFrame{
     }
 
 
-    // create Listener class and perform
+    // create Textfield danmu Listener and perform
     private class SentenceListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
 
