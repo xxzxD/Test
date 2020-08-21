@@ -12,9 +12,15 @@ import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.KeyEvent;
+
 import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class ke extends JFrame{
 
     private final JFrame frame;
@@ -27,6 +33,7 @@ public class ke extends JFrame{
     private JScrollPane jsp;
     private int count = 0;
     private String comment = "";
+    private int first = 1;
     
     public static void main(String[] args) {
         ke gui = new ke();
@@ -43,6 +50,7 @@ public class ke extends JFrame{
         frame.setBounds(300, 10, 1000, 800);
         frame.getContentPane().setLayout(null);
         label();
+        TimesInPeriod();
     }
 
     private void label() {
@@ -63,8 +71,26 @@ public class ke extends JFrame{
         enter.addActionListener(sentenceListener);
 
         // 
-        textArea = new JTextArea("Your output will appear here...");
+        textArea = new JTextArea("Your output will appear here.\nIf you want to cheer, press ENTER in this area as many times as you can.");
         textArea.setLineWrap(true);
+        textArea.setEditable(false);
+        textArea.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    count++;
+                }
+            }
+            
+            // public void keyReleased(KeyEvent e){
+            //     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            //         System.out.println("ENTER");
+            //     }};
+            // public void keyPressed(KeyEvent e){
+            //     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            //         System.out.println("ENTER");
+            //     }};
+
+        });
         // textArea.setWrapStyleWord(true);
         
         jsp = new JScrollPane(textArea);
@@ -109,24 +135,57 @@ public class ke extends JFrame{
     }
 
     // formatting comment
-    private String CommentFormat(String s){
+    private String CommentFormat(String s, String user){
         // get time(local)
         Calendar ca = Calendar.getInstance();
         int hour = ca.get(Calendar.HOUR_OF_DAY);
         int minute = ca.get(Calendar.MINUTE);
 
         String cf = "";
-        cf = hour + ":" + minute + "  User  " + s + "\n";
+        cf = hour + ":" + minute + "  " + user + "  " + s + "\n";
         return cf;
+    }
+
+    private void TimesInPeriod(){
+        Timer timer = new Timer();
+        String status = "";
+        
+        timer.schedule(new TimerTask() {
+            public void run() {
+                String cheer = Integer.toString(count) + " times pressed.";
+                if(count == 0 || count == 1){
+                    System.out.println("None\n");
+                }else if(count == 2){
+                    cheer = "cheered!     " + cheer;
+                    System.out.println("Low\n");
+                }else if(count >= 3 && count <= 5){
+                    cheer = "cheered!!     " + cheer;
+                    System.out.println("Medium\n");
+                }else if(count >= 6){
+                    cheer = "cheered!!!     " + cheer;
+                    System.out.println("High\n");
+                }else {
+                    System.out.println("Error\n");
+                }
+                if (count >= 2) {
+                    if (first == 0) {
+                        textArea.append(CommentFormat(cheer, "User"));
+                    } else {
+                        textArea.setText(CommentFormat(cheer, "User"));
+                        first = 0;
+                    }
+                }
+                count = 0;
+            }
+        }, 0, 1000);
     }
 
 
     // create Listener class and perform
     private class SentenceListener implements ActionListener {
-        private int first = 1;
         public void actionPerformed(ActionEvent event) {
 
-                comment = CommentFormat(textField.getText());
+                comment = CommentFormat(textField.getText(), "User");
 
                 if(first == 0){
                     textArea.append(comment);
@@ -135,6 +194,6 @@ public class ke extends JFrame{
                     first = 0;
                 }
             }
-        }
+    }
         
 }
