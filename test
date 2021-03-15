@@ -1,29 +1,29 @@
-Script started on 2021-03-15 03:57:08+0000
-root@x:/etc/nginx/sites-available# v2ray info
+Script started on 2021-03-15 04:32:00+0000
+root@x:~# v2ray info
 1.
 Group: A
-IP: [35msp.aikkk233.tk[0m
-Port: 64018
-TLS: open
-UUID: cc4f8d5b-967b-4557-a4b6-bde92965bc27
+IP: [35m206.189.156.22[0m
+Port: 46492
+TLS: close
+UUID: 19c34e5c-8547-11eb-a160-ca5d7a1063fa
 Alter ID: 0
-Network: WebSocket host: sp.aikkk233.tk, path: /adGsjUt8/
+Network: kcp dtls
 
-[32mvmess://eyJ2IjogIjIiLCAicHMiOiAiIiwgImFkZCI6ICJzcC5haWtrazIzMy50ayIsICJwb3J0IjogNjQwMTgsICJhaWQiOiAwLCAidHlwZSI6ICIiLCAibmV0IjogIndzIiwgInBhdGgiOiAiL2FkR3NqVXQ4LyIsICJob3N0IjogInNwLmFpa2trMjMzLnRrIiwgImlkIjogImNjNGY4ZDViLTk2N2ItNDU1Ny1hNGI2LWJkZTkyOTY1YmMyNyIsICJ0bHMiOiAidGxzIn0=[0m
+[32mvmess://eyJ2IjogIjIiLCAicHMiOiAiIiwgImFkZCI6ICIyMDYuMTg5LjE1Ni4yMiIsICJwb3J0IjogNDY0OTIsICJhaWQiOiAwLCAidHlwZSI6ICJkdGxzIiwgIm5ldCI6ICJrY3AiLCAicGF0aCI6ICIiLCAiaG9zdCI6ICIiLCAiaWQiOiAiMTljMzRlNWMtODU0Ny0xMWViLWExNjAtY2E1ZDdhMTA2M2ZhIiwgInRscyI6ICJub25lIn0=[0m
 
 2.
 Group: B
 IP: [35msp.aikkk233.tk[0m
-Port: 8443
+Port: 443
 TLS: open
-UUID: 4000b3e8-8542-11eb-a160-ca5d7a1063fa
-Alter ID: 0
-Network: WebSocket host: , path: /iFKGIj0U/
+ID: 53840884-8547-11eb-a160-ca5d7a1063fa
+Encryption: none
+Network: VLESS WebSocket host: , path: /hGX6bCoz/
 
-[32mvmess://eyJ2IjogIjIiLCAicHMiOiAiIiwgImFkZCI6ICJzcC5haWtrazIzMy50ayIsICJwb3J0IjogODQ0MywgImFpZCI6IDAsICJ0eXBlIjogIiIsICJuZXQiOiAid3MiLCAicGF0aCI6ICIvaUZLR0lqMFUvIiwgImhvc3QiOiAiIiwgImlkIjogIjQwMDBiM2U4LTg1NDItMTFlYi1hMTYwLWNhNWQ3YTEwNjNmYSIsICJ0bHMiOiAidGxzIn0=[0m
+[32mvless://53840884-8547-11eb-a160-ca5d7a1063fa@sp.aikkk233.tk:443?encryption=none&security=tls&type=ws&&host=&path=/hGX6bCoz/[0m
 
 Tip: The same group's node protocol, port, tls are the same.
-root@x:/etc/nginx/sites-available# exit
+root@x:~# exit
 exit
 
-Script done on 2021-03-15 03:57:17+0000
+Script done on 2021-03-15 04:32:09+0000
